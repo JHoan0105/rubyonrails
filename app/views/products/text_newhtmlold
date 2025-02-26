@@ -1,0 +1,28 @@
+ 
+<% if @product.errors.any? %>
+  <div class="alert alert-danger">
+    <h2>There were errors with your submission:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= render "form", product: @product %>
+<%= link_to "Cancel", products_path %>
+<%= form_with model: @product do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+        <% if @product.errors[:name].any? %>
+        <div class="error-message">
+            <%= @product.errors[:name].join(", ") %>
+        </div>
+        <% end %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  <%= link_to "Back", products_path %>

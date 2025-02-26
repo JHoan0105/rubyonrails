@@ -1,0 +1,16 @@
+<h1><%= t ".title" %></h1>
+<p>Find me in app/views/products/index.html.erb</p>
+<%#= debug @products %>
+<% if flash[:alert] %>
+<div class="alert alert-danger">
+    <%= flash[:alert] %>
+</div>
+<% end %>
+<%= link_to "New Product", new_product_path if authenticated? %>
+<div id='products'>
+  <% @products.each {|prod| %>
+    <div>
+        <%= link_to prod.name, product_path(prod) %>
+    </div>
+    <% } %>
+</div>
